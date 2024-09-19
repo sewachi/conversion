@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Conversion Calculator</title>
+    <link href="img/calculator.png" rel="icon">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="box">
+          <h1>Conversion Calculator</h1>
+          <div class="content">
+
+            <div class="input">  
+            <label for="fromUnit">From Unit :</label>
+            <select class="inputH" id="fromUnit">
+              <option value="kg">Kilogram</option>
+              <option value="m">Meter</option>
+            </select>
+            <label for="toUnit">To Unit :</label>
+            <select class="inputH" id="toUnit">
+              <option value="m">Meter</option>
+              <option value="kg">Kilogram</option>
+            </select>
+          </div>
+
+          <div class="input">
+            <label for="conversion">Conversion Formula</label>
+            <label for=""></label>
+            <input type="number" id="conversionFormula" autocomplete="off" required/>
+        </div>
+
+
+           
+
+            <div class="input">
+              <label for="value">Value to Convert</label>
+              <input type="number" id="amount" required autocomplete="off">
+            </div>
+
+            <button class="calculate" id="submit" onclick="convert();">Calculate</button>
+          </div>
+          <div class="result">
+            <div id="result">00.00</div>
+            <p class="comment"></p>
+
+            <h4 class="last">kg to m = devide | m to kg = multiple</h4>
+          </div>
+          
+
+          <!-- <div class="footer"><a class="footer-text" href="">Nexus Electronics Sdn. Bhd.</a></div> -->
+        
+      
+        </div>
+      </div>
+
+      <script>
+          function convert() {
+    // Get user inputs
+    var fromUnit = document.getElementById("fromUnit").value;
+    var toUnit = document.getElementById("toUnit").value;
+    var conversionFormula = document.getElementById("conversionFormula").value;
+    var amount = parseFloat(document.getElementById("amount").value);
+
+    // Perform the conversion
+    if (fromUnit === 'kg' && toUnit === 'm') {
+      // If converting from kg to m, divide
+      var result = amount / eval(conversionFormula);
+    } else if (fromUnit === 'm' && toUnit === 'kg') {
+      // If converting from m to kg, multiply
+      var result = amount * eval(conversionFormula);
+    } else {
+      // Invalid conversion
+      document.getElementById("result").innerHTML = "Invalid conversion or same unit";
+      return;
+    }
+
+    // Display the result
+    document.getElementById("result").innerHTML = `${amount} ${fromUnit} is equal to ${result.toFixed(3)} ${toUnit}`;
+  }
+      </script>
+
+
+      
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p id="modalText"></p>
+    </div></div>
+
+
+
+    
+<script src="script.js"></script>
+
+</body>
+</html>
